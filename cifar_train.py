@@ -7,6 +7,7 @@ import sys
 import numpy as np
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.optim
@@ -318,7 +319,11 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
 
             # compute output
             output = model(input)
+            output_prob = F.softmax(output,dim=1)
+            sum_per_class = torch.sum(output_prob,dim=0,keepdim=True).expand(400,10)
+
             pdb.set_trace()
+            output = output_prob / sum_per_class
             loss = criterion(output, target)
 
             # measure accuracy and record loss

@@ -173,7 +173,7 @@ def main_worker(gpu, ngpus_per_node, args):
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
 
     val_loader = torch.utils.data.DataLoader(
-        val_dataset, batch_size=1000, shuffle=False,
+        val_dataset, batch_size=400, shuffle=False,
         num_workers=args.workers, pin_memory=True)
 
     # init log for training
@@ -320,7 +320,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
             # compute output
             output = model(input)
             output_prob = F.softmax(output,dim=1)
-            sum_per_class = torch.sum(output_prob,dim=0,keepdim=True).expand(1000,10)
+            sum_per_class = torch.sum(output_prob,dim=0,keepdim=True).expand(400,10)
 
             # pdb.set_trace()
             output = output_prob / sum_per_class

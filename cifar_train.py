@@ -20,6 +20,7 @@ from sklearn.metrics import confusion_matrix
 from utils import *
 from imbalance_cifar import IMBALANCECIFAR10, IMBALANCECIFAR100
 from losses import LDAMLoss, FocalLoss
+import pdb
 
 model_names = sorted(name for name in models.__dict__
     if name.islower() and not name.startswith("__")
@@ -171,7 +172,7 @@ def main_worker(gpu, ngpus_per_node, args):
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
 
     val_loader = torch.utils.data.DataLoader(
-        val_dataset, batch_size=100, shuffle=False,
+        val_dataset, batch_size=400, shuffle=False,
         num_workers=args.workers, pin_memory=True)
 
     # init log for training
@@ -317,6 +318,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
 
             # compute output
             output = model(input)
+            pdb.set_trace()
             loss = criterion(output, target)
 
             # measure accuracy and record loss

@@ -14,4 +14,12 @@ def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type)
     os.system(the_command)
 
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="logit_normalization",exp_str='ln_test')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="logit_normalization",exp_str='ln_1')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_normalization",exp_str='pn_1')
+
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="logit_normalization",exp_str='ln_2')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="logit_normalization",exp_str='ln_3')
+
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_normalization",exp_str='pn_1')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_normalization",exp_str='pn_2')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_normalization",exp_str='pn_3')

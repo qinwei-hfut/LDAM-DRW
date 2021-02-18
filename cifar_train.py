@@ -346,7 +346,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 x_max = output.max(dim=0,keepdim=True)[0]
                 output = (output - x_min) / (x_max - x_min)
             elif args.normalize_type == 'none':
-                print('no normalization')
+                output = output
             else:
                 break
                 output = 0

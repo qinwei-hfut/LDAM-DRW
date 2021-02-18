@@ -70,6 +70,7 @@ parser.add_argument('--gpu', default=None, type=int,
                     help='GPU id to use.')
 parser.add_argument('--root_log',type=str, default='log')
 parser.add_argument('--root_model', type=str, default='checkpoint')
+parser.add_argument('--normalize_type',type=str)
 best_acc1 = 0
 
 
@@ -320,10 +321,31 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
             # compute output
             output = model(input)
 
-            # output_prob = F.softmax(output,dim=1)
-            # sum_per_class = torch.sum(output_prob,dim=0,keepdim=True).expand(400,10)
-            # # pdb.set_trace()
-            # output = output_prob / sum_per_class
+            if args.normalize_type == 'prob_division':
+                output = F.softmax(output,dim=1)
+                sum_per_class = torch.sum(output,dim=0,keepdim=True)
+                output = output / sum_per_class
+            elif args.normalize_type == 'logit_standardization':
+                m = output.mean(dim=0,keepdim=True)
+                s = output.std(dim=0,unbiased=False,keepdim=True)
+                output -= m
+                output /= s
+            elif args.normalize_type == 'prob_standardization':
+                output = F.softmax(output,dim=1)
+                m = output.mean(dim=0,keepdim=True)
+                s = output.std(dim=0,unbiased=False,keepdim=True)
+                output -= m
+                output /= s
+            elif args.normalize_type == 'logit_normalization':
+                x_min = output.min(dim=0,keepdim=True)[0]
+                x_max = output.max(dim=0,keepdim=True)[0]
+                output = (output - x_min) / (x_max - x_min)
+            elif args.normalize_type == 'prob_normalization':
+                output = F.softmax(output,dim=1)
+                x_min = output.min(dim=0,keepdim=True)[0]
+                x_max = output.max(dim=0,keepdim=True)[0]
+                output = (output - x_min) / (x_max - x_min)
+
 
             loss = criterion(output, target)
 

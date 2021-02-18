@@ -39,7 +39,7 @@ parser.add_argument('--imb_type', default="exp", type=str, help='imbalance type'
 parser.add_argument('--imb_factor', default=0.01, type=float, help='imbalance factor')
 parser.add_argument('--train_rule', default='None', type=str, help='data sampling strategy for train loader')
 parser.add_argument('--rand_number', default=0, type=int, help='fix random number for data sampling')
-parser.add_argument('--exp_str', default='0', type=str, help='number to indicate which experiment it is')
+parser.add_argument('--exp_str', default='1_norm_test', type=str, help='number to indicate which experiment it is')
 parser.add_argument('-j', '--workers', default=4, type=int, metavar='N',
                     help='number of data loading workers (default: 4)')
 parser.add_argument('--epochs', default=200, type=int, metavar='N',
@@ -320,10 +320,10 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
             # compute output
             output = model(input)
 
-            output_prob = F.softmax(output,dim=1)
-            sum_per_class = torch.sum(output_prob,dim=0,keepdim=True).expand(400,10)
-            # pdb.set_trace()
-            output = output_prob / sum_per_class
+            # output_prob = F.softmax(output,dim=1)
+            # sum_per_class = torch.sum(output_prob,dim=0,keepdim=True).expand(400,10)
+            # # pdb.set_trace()
+            # output = output_prob / sum_per_class
 
             loss = criterion(output, target)
 

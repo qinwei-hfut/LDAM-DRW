@@ -11,6 +11,7 @@ def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type)
         + " --exp_str="+exp_str \
         + " --normalize_type="+normalize_type 
     
+    print(the_command)
     os.system(the_command)
 
 

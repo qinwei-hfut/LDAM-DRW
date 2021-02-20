@@ -347,6 +347,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 output = (output - x_min) / (x_max - x_min)
             elif args.normalize_type == 'gaussian':
                 output = F.softmax(output,dim=1)
+                output_ori = output
                 # output = torch.tensor([[1.1,5],[2.2,4],[3.3,3],[4.4,2],[5.5,1]],device='cuda')
                 # output = torch.tensor([[0.9,0.1],[0.85,0.15],[0.6,0.4],[0.55,0.45]])
                 if epoch > 10:
@@ -368,6 +369,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 output = torch.cat(output_list,dim=1)
                 if epoch > 10:
                     print(output)
+                    pdb.set_trace()
                     print('-------------------')
                 # pdb.set_trace()
             elif args.normalize_type == 'none':

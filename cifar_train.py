@@ -174,7 +174,7 @@ def main_worker(gpu, ngpus_per_node, args):
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
 
     val_loader = torch.utils.data.DataLoader(
-        val_dataset, batch_size=10000, shuffle=False,
+        val_dataset, batch_size=100, shuffle=False,
         num_workers=args.workers, pin_memory=True)
 
     # init log for training
@@ -348,8 +348,10 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
             elif args.normalize_type == 'gaussian':
                 output = F.softmax(output,dim=1)
                 # output = torch.tensor([[1.1,5],[2.2,4],[3.3,3],[4.4,2],[5.5,1]],device='cuda')
-                output = torch.tensor([[0.9,0.1],[0.85,0.15],[0.6,0.4],[0.55,0.45]])
-                print(output)
+                # output = torch.tensor([[0.9,0.1],[0.85,0.15],[0.6,0.4],[0.55,0.45]])
+                if epoch > 10:
+                    print('------------------')
+                    print(output[0:5])
                 
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]
@@ -363,7 +365,10 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 for c in range(num_classes):
                     output_list.append(output_randn.sort()[0][output[:,c].sort()[1]].view(val_batch_size,1))
                 output = torch.cat(output_list,dim=1)
-                pdb.set_trace()
+                if epoch > 10:
+                    print(output[0:5])
+                    print('-------------------')
+                # pdb.set_trace()
             elif args.normalize_type == 'none':
                 output = output
             else:

@@ -174,7 +174,7 @@ def main_worker(gpu, ngpus_per_node, args):
         num_workers=args.workers, pin_memory=True, sampler=train_sampler)
 
     val_loader = torch.utils.data.DataLoader(
-        val_dataset, batch_size=400, shuffle=False,
+        val_dataset, batch_size=1000, shuffle=False,
         num_workers=args.workers, pin_memory=True)
 
     # init log for training

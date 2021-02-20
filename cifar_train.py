@@ -360,7 +360,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 for c in range(num_classes):
                     output_list.append(output_randn[:,c].sort()[0][output[:,c].sort()[1]].view(val_batch_size,1))
                 output = torch.cat(output_list,dim=1)
-                pdb.set_trace()
+                # pdb.set_trace()
             elif args.normalize_type == 'none':
                 output = output
             else:

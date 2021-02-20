@@ -345,6 +345,13 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 x_min = output.min(dim=0,keepdim=True)[0]
                 x_max = output.max(dim=0,keepdim=True)[0]
                 output = (output - x_min) / (x_max - x_min)
+            elif args.normalize_type == 'gaussian':
+                num_classes = output.shape[1]
+                randn_list = []
+                for c in num_classes:
+                    randn_per_class = torch.randn(args.val_batch_size,1)
+                    randn_list.append(randn_per_class)
+                    torch.cat(randn_list,dim=1)
             elif args.normalize_type == 'none':
                 output = output
             else:

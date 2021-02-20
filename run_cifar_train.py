@@ -37,11 +37,11 @@ def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type)
 
 
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_1')
-# run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_1')
+# run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_1')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_1')
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_2')
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_3')
+# run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_2')
+# run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_3')
 
-# run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_2')
-# run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_3')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_2')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_3')

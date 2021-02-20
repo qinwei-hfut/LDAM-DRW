@@ -348,6 +348,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
             elif args.normalize_type == 'gaussian':
                 # output = torch.tensor([[1.1,5],[2.2,4],[3.3,3],[4.4,2],[5.5,1]],device='cuda')
                 # print(output)
+                output = F.softmax(output,dim=1)
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]
                 randn_list = []

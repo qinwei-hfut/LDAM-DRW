@@ -345,19 +345,19 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 x_min = output.min(dim=0,keepdim=True)[0]
                 x_max = output.max(dim=0,keepdim=True)[0]
                 output = (output - x_min) / (x_max - x_min)
-            elif args.normalize_type == 'gaussian':
+            elif args.normalize_type == 'static_gaussian':
                 output = F.softmax(output,dim=1)
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]
-                # randn_list = []
-                # for c in range(num_classes):
-                #     randn_per_class = torch.randn(val_batch_size,device='cuda').view(val_batch_size,1)
-                #     randn_list.append(randn_per_class)
-                # output_randn = torch.cat(randn_list,dim=1)
-                output_list = []
-                # output_randn = torch.randn(val_batch_size,device='cuda')
-                output_randn = torch.tensor([val_batch_size - i for i in range(val_batch_size)],device='cuda').float()
+                output_randn = torch.sort(torch.randn(val_batch_size,device='cuda'),descending=True)
                 for c in range(num_classes):
+                    output[:,c][torch.topk(output[:,c],k=val_batch_size)[1]] = output_randn
+            elif args.normalize_type == 'dy_gaussian':
+                output = F.softmax(output,dim=1)
+                val_batch_size = output.shape[0]
+                num_classes = output.shape[1]
+                for c in range(num_classes):
+                    output_randn = torch.sort(torch.randn(val_batch_size,device='cuda'),descending=True)
                     output[:,c][torch.topk(output[:,c],k=val_batch_size)[1]] = output_randn
             elif args.normalize_type == 'uniform':
                 output = F.softmax(output,dim=1)

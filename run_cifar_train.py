@@ -1,6 +1,6 @@
 import os
 
-def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type):
+def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type,dataset):
     # python cifar_train.py --gpu 0 --imb_type exp --imb_factor 0.01 --loss_type LDAM --train_rule DRW
     the_command = "python cifar_train.py " \
         + " --gpu="+str(gpu) \
@@ -9,12 +9,14 @@ def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type)
         + " --loss_type="+loss_type \
         + " --train_rule="+train_rule \
         + " --exp_str="+exp_str \
-        + " --normalize_type="+normalize_type 
+        + " --normalize_type="+normalize_type \
+        + " --dataset="+dataset \
     
     print(the_command)
     os.system(the_command)
 
 
+dataset = "cifar100"
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="logit_normalization",exp_str='ln_1')
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_normalization",exp_str='pn_1')
 
@@ -37,11 +39,11 @@ def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type)
 
 
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_4')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_1',dataset=dataset)
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_4')
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_5')
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_6')
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_2',dataset=dataset)
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_3',dataset=dataset)
 
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_5')
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_6')

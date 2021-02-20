@@ -346,7 +346,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 x_max = output.max(dim=0,keepdim=True)[0]
                 output = (output - x_min) / (x_max - x_min)
             elif args.normalize_type == 'gaussian':
-                output = torch.tensor([[1,5],[2,4],[3,3],[4,2],[5,1]],device='cuda')
+                output = torch.tensor([[1.1,5],[2.2,4],[3.3,3],[4.4,2],[5.5,1]],device='cuda')
                 print(output)
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]

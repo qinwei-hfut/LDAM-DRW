@@ -16,7 +16,7 @@ def run_exp(gpu,imb_type,imb_factor,loss_type,train_rule,exp_str,normalize_type,
     os.system(the_command)
 
 
-dataset = "cifar10"
+dataset = "cifar100"
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="logit_normalization",exp_str='ln_1')
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.02,loss_type="LDAM",train_rule="DRW",normalize_type="prob_normalization",exp_str='pn_1')
 
@@ -48,6 +48,6 @@ dataset = "cifar10"
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_8_10k',dataset=dataset)
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_9_10k',dataset=dataset)
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="gaussian",exp_str='gau_test',dataset=dataset)
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="uniform",exp_str='uniform_test',dataset=dataset)
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="gaussian",exp_str='gau_2',dataset=dataset)
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="gaussian",exp_str='gau_3',dataset=dataset)

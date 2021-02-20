@@ -355,8 +355,10 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                     randn_per_class = torch.randn((val_batch_size,1),device='cuda')
                     randn_list.append(randn_per_class)
                 output_randn = torch.cat(randn_list,dim=1)
+                output_list = []
                 for c in range(num_classes):
-                    output[:,c] = output_randn[:,c].sort()[0][output[:,c].sort()[1]]
+                    output_list.append(output_randn[:,c].sort()[0][output[:,c].sort()[1]].view(val_batch_size,1))
+                output = torch.cat(randn_list,dim=1)
                 pdb.set_trace()
             elif args.normalize_type == 'none':
                 output = output

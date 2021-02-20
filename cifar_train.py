@@ -349,7 +349,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 output = F.softmax(output,dim=1)
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]
-                output_randn = torch.sort(torch.randn(val_batch_size,device='cuda'),descending=True)
+                output_randn = torch.sort(torch.randn(val_batch_size,device='cuda'),descending=True)[0]
                 for c in range(num_classes):
                     output[:,c][torch.topk(output[:,c],k=val_batch_size)[1]] = output_randn
             elif args.normalize_type == 'dy_gaussian':
@@ -357,7 +357,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]
                 for c in range(num_classes):
-                    output_randn = torch.sort(torch.randn(val_batch_size,device='cuda'),descending=True)
+                    output_randn = torch.sort(torch.randn(val_batch_size,device='cuda'),descending=True)[0]
                     output[:,c][torch.topk(output[:,c],k=val_batch_size)[1]] = output_randn
             elif args.normalize_type == 'uniform':
                 output = F.softmax(output,dim=1)

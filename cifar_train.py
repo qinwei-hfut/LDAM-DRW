@@ -365,7 +365,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 # output_randn = torch.randn(val_batch_size,device='cuda')
                 output_randn = torch.tensor([val_batch_size - i for i in range(val_batch_size)],device='cuda').float()
                 for c in range(num_classes):
-                    output[:,c][torch.topk(output[:,c])[1]] = output_randn
+                    output[:,c][torch.topk(output[:,c],k=val_batch_size)[1]] = output_randn
                     # output_list.append(output_randn.sort()[0][output[:,c].sort()[1]].view(val_batch_size,1))
                 # output = torch.cat(output_list,dim=1)
                 if epoch > 10:

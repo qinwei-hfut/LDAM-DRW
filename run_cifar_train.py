@@ -39,11 +39,13 @@ dataset = "cifar100"
 
 
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_4',dataset=dataset)
+# run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_4',dataset=dataset)
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_7_10k',dataset=dataset)
 
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_5',dataset=dataset)
-run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_6',dataset=dataset)
+# run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_5',dataset=dataset)
+# run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="none",exp_str='none_6',dataset=dataset)
 
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_8_10k',dataset=dataset)
 # run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="prob_division",exp_str='pd_9_10k',dataset=dataset)
+
+run_exp(gpu=0,imb_type='exp',imb_factor=0.005,loss_type="LDAM",train_rule="DRW",normalize_type="gaussian",exp_str='test',dataset=dataset)

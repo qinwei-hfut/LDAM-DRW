@@ -346,8 +346,8 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 x_max = output.max(dim=0,keepdim=True)[0]
                 output = (output - x_min) / (x_max - x_min)
             elif args.normalize_type == 'gaussian':
-                output = torch.tensor([[1.1,5],[2.2,4],[3.3,3],[4.4,2],[5.5,1]],device='cuda')
-                print(output)
+                # output = torch.tensor([[1.1,5],[2.2,4],[3.3,3],[4.4,2],[5.5,1]],device='cuda')
+                # print(output)
                 val_batch_size = output.shape[0]
                 num_classes = output.shape[1]
                 randn_list = []
@@ -359,7 +359,7 @@ def validate(val_loader, model, criterion, epoch, args, log=None, tf_writer=None
                 for c in range(num_classes):
                     output_list.append(output_randn[:,c].sort()[0][output[:,c].sort()[1]].view(val_batch_size,1))
                 output = torch.cat(output_list,dim=1)
-                pdb.set_trace()
+                # pdb.set_trace()
             elif args.normalize_type == 'none':
                 output = output
             else:
